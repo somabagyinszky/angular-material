@@ -8,18 +8,25 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { StartComponent } from './start/start.component';
+import { BodyComponent } from './body/body.component';
 
 export const appRoutes : Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'sidenav', component: SidenavComponent, outlet: 'sidenav' },
-  { path: 'dashboard', component: DashboardComponent, outlet: 'content' }
+  { path: '', redirectTo: '/start', pathMatch: 'full' },
+  { path: 'start', component: StartComponent },
+  { path: 'body', component: BodyComponent, children: [
+    { path: 'sidenav', component: SidenavComponent, outlet: 'sidenav' },
+    { path: 'dashboard', component: DashboardComponent, outlet: 'content' }
+  ]}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     SidenavComponent,
-    DashboardComponent
+    DashboardComponent,
+    StartComponent,
+    BodyComponent
   ],
   imports: [
     BrowserModule,
